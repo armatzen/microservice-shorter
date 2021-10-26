@@ -15,9 +15,14 @@ import (
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
+	"github.com/joho/godotenv"
 )
 
 func main() {
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loadig .env file")
+	}
 	repo := ChooseRepo()
 	service := shortener.NewRedirectService(repo)
 	handler := h.NewHandler(service)
