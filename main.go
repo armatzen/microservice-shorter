@@ -63,7 +63,7 @@ func httpPort() string {
 func ChooseRepo() shortener.RedirectRepository {
 	if os.Getenv("URL_DB") == "mongo" {
 		mongoURL := os.Getenv("MONGO_URL")
-		mongodb := os.Getenv("MONGO_URL")
+		mongodb := os.Getenv("MONGO_DB")
 		mongoTimeout, _ := strconv.Atoi(os.Getenv("MONGO_TIMEOUT"))
 		repo, err := mr.NewMongoRepository(mongoURL, mongodb, mongoTimeout)
 
