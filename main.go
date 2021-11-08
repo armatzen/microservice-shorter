@@ -21,7 +21,7 @@ import (
 func main() {
 	err := godotenv.Load()
 	if err != nil {
-		log.Fatal("Error loadig .env file")
+		log.Fatal("Error loading .env file")
 	}
 	repo := ChooseRepo()
 	service := shortener.NewRedirectService(repo)
@@ -57,13 +57,13 @@ func httpPort() string {
 		port = os.Getenv("PORT")
 	}
 
-	return fmt.Sprint(":%s", port)
+	return fmt.Sprintf(":%s", port)
 }
 
 func ChooseRepo() shortener.RedirectRepository {
 	if os.Getenv("URL_DB") == "mongo" {
 		mongoURL := os.Getenv("MONGO_URL")
-		mongodb := os.Getenv("MONGO_URL")
+		mongodb := os.Getenv("MONGO_DB")
 		mongoTimeout, _ := strconv.Atoi(os.Getenv("MONGO_TIMEOUT"))
 		repo, err := mr.NewMongoRepository(mongoURL, mongodb, mongoTimeout)
 
